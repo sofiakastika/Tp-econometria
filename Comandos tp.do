@@ -16,9 +16,13 @@ gen daynum = dow(day)
 reg dlclose i.daynum 
 predict estacionalidad 
 predict sinestacionalidad, resid 
-
 *para generar mes 
 *gen mesnum = month(dofm(mes))
+
+*TENDENCIA
+reg dlclose day
+predict trend
+predict sintrend, resid
 
 *Generamos las variables en logaritmo y en diferencias 
 foreach t in precios {
