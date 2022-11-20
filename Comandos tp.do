@@ -48,11 +48,11 @@ pac inflacion1
 *En base a los gráficos obtenidos, podríamos pensar que el modelo es un ARMA (2,1). 
 
 *ARMA (2,1)
-arima inflacion1, arima(2,0,1) // AIC: -1466,137 BIC: -1449,169
+arima inflacion1, arima(2,0,1) // AIC:-1469.561  BIC:-1452.593
 estat ic
 
 *AR(2)
-arima inflacion1, arima(2,0,0) // AIC: -1464,861  BIC: -1451,286
+arima inflacion1, arima(2,0,0) // AIC: -1468.194   BIC:-1454.62
 estat ic
 
 *AR(1)
@@ -68,6 +68,10 @@ estat ic
 arima inflacion1, arima(1,0,1) // AIC: -1468,205   BIC: -1454,63
 
 *Según los criterios de información (tanto AIC como BIC) podemos ver que el modelo es un AR(1)
+
+
+
+
 
 
 
