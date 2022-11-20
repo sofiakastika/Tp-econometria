@@ -43,6 +43,9 @@ estat ic
 
 *no entendí lo de predicción
 
+*4) display (poner los numeritos a mano para cada mes). No sé cómo agregarle la tendencia y la estacionalidad 
+
+
 
 
 
