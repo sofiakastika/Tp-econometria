@@ -29,30 +29,45 @@ reg inflacion i.mesnum
 *Como todos los meses son no significativos, no hay evidencia de estacionalidad. 
 
 *TENDENCIA 
-reg inflacion t 
+*Por el gráfico notamos que la variable podría tener una tendencia exponencial 
+gen t2 = t^2
+gen t3 = t^3
+reg inflacion t t2 t3 
 predict trend
-predict sintrend, resid
+predict inflacion1, resid
 
-*sintren es nuestra variable sin tendencia y sin raíz unitaria (estacionalidad no había)
+*sintrend es nuestra variable sin tendencia y sin raíz unitaria (estacionalidad no había)
 
 *2)
-ac sintrend
-pac sintrend 
+*MA. AUTOCORRELACION
+ac inflacion1
 
+*AR AUTORRELACION PARCIAL
+pac inflacion1
 
-*3) Estimamos el modelo 
-arima dlnprice, arima(1,0,0) 
+*En base a los gráficos obtenidos, podríamos pensar que el modelo es un ARMA (2,1). 
+
+*ARMA (2,1)
+arima inflacion1, arima(2,0,1) // AIC: -1466,137 BIC: -1449,169
 estat ic
 
-arima dlnprice, arima(2,0,0) 
+*AR(2)
+arima inflacion1, arima(2,0,0) // AIC: -1464,861  BIC: -1451,286
 estat ic
 
-arima dlnprice, arima(3,0,0) 
+*AR(1)
+arima inflacion1, arima(1,0,0) // AIC: -1466,853   BIC: -1456,672
 estat ic
 
-*no entendí lo de predicción
+*MA(1)
+arima inflacion1, arima(0,0,1) // AIC: -1455,774  BIC:  -1445,594
+estat ic
 
 
-*4) display (poner los numeritos a mano para cada mes). No sé cómo agregarle la tendencia y la estacionalidad 
+*ARMA(1,1)
+arima inflacion1, arima(1,0,1) // AIC: -1464,863  BIC:  -1451,288
+estat ic
+
+*Según los criterios de información (tanto AIC como BIC) podemos ver que el modelo es un AR(1)
 
 
