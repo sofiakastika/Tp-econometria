@@ -63,14 +63,21 @@ estat ic
 arima inflacion1, arima(0,0,1) // AIC: -1461,059  BIC:  -1450,878
 estat ic
 
-
 *ARMA(1,1)
 arima inflacion1, arima(1,0,1) // AIC: -1468,205   BIC: -1454,63
 
 *Según los criterios de información (tanto AIC como BIC) podemos ver que el modelo es un AR(1)
 
 
+*3) 
+*AR(1)
+arima inflacion1, arima(1,0,0) 
+predict pronostico_infla if (t<217)
+gen inf_hat = pronostico_infla + trend
 
+tsline inf_hat inflacion1 
+
+*4) 
 
 
 
