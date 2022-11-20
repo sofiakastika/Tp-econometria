@@ -68,7 +68,6 @@ arima inflacion1, arima(1,0,1) // AIC: -1468,205   BIC: -1454,63
 
 *Según los criterios de información (tanto AIC como BIC) podemos ver que el modelo es un AR(1)
 
-
 *3) 
 *AR(1)
 arima inflacion1, arima(1,0,0) 
@@ -78,6 +77,36 @@ gen inf_hat = pronostico_infla + trend
 tsline inf_hat inflacion1 
 
 *4) 
+*Encontramos phi 0 en base a lo que nos tira stata. 
+display 0.0000252-0.000252*0.4982571
+
+*Nos da que el phi 0 es:  -0,00010036
+
+*Enero 2022
+display -0.00010036+0.4982571*0.0324237
+
+*Febrero 2022
+
+*Marzo 2022
+
+*Abril 2022
+
+*Mayo 2022
+
+*Junio 2022
+
+*Julio 2022
+
+*Agosto 2022
+
+*Septiembre 2022
+
+*Octubre 2022
+
+*Noviembre 2022
+
+*Diciembre 
+
 
 
 
