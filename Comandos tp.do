@@ -1,5 +1,4 @@
 *TP Econometría
-*TP Econometría
 clear all 
 set more off 
 
