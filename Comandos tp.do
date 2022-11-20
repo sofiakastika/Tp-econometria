@@ -56,18 +56,18 @@ arima inflacion1, arima(2,0,0) // AIC: -1464,861  BIC: -1451,286
 estat ic
 
 *AR(1)
-arima inflacion1, arima(1,0,0) // AIC: -1466,853   BIC: -1456,672
+arima inflacion1, arima(1,0,0) // AIC: -1470,152   BIC: - 1459,971
 estat ic
 
 *MA(1)
-arima inflacion1, arima(0,0,1) // AIC: -1455,774  BIC:  -1445,594
+arima inflacion1, arima(0,0,1) // AIC: -1461,059  BIC:  -1450,878
 estat ic
 
 
 *ARMA(1,1)
-arima inflacion1, arima(1,0,1) // AIC: -1464,863  BIC:  -1451,288
-estat ic
+arima inflacion1, arima(1,0,1) // AIC: -1468,205   BIC: -1454,63
 
 *Según los criterios de información (tanto AIC como BIC) podemos ver que el modelo es un AR(1)
+
 
 
