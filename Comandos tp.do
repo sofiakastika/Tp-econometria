@@ -5,35 +5,39 @@ use "C:\Users\sofi1\OneDrive\Escritorio\Económicas\Segundo Cuatri 2022\Economet
 
 *1) 
 *Formateamos variable tiempo 
-rename Fecha fecha
 rename Indice ipc
-tsset fecha
-tsline ipc
+rename Fecha fecha
+gen t=_n /* mejor para que diga mes y año*/
+tsset t 
 
+tsline ipc
 gen lipc = ln(ipc)
 gen inflacion = D.lipc
-
-tsline lipc
-tsline dlipc
+tsline inflacion
 
 *RAÍCES UNITARIAS 
 dfuller ipc 
+dfuller inflacion
+
+*El orden de integración es 1, porque hicimos una diferencia y la serie se vuelve estacionaria. 
 
 *ESTACIONALIDAD 
 *genero los días de la semana
-gen daynum = dow(day)
-reg dlclose i.daynum 
-predict estacionalidad 
-predict sinestacionalidad, resid 
+gen mesnum = month(dofm(fecha))
+reg inflacion i.mesnum
 
-*para generar mes 
-*gen mesnum = month(dofm(mes))
+*Como todos los meses son no significativos, no hay evidencia de estacionalidad. 
 
+*TENDENCIA 
+reg inflacion t 
+predict trend
+predict sintrend, resid
 
+*sintren es nuestra variable sin tendencia y sin raíz unitaria (estacionalidad no había)
 
-*2) justificar qué modelo usamos en base al que nos da el menor criterio de información (AIC o BIC)
-ac precios
-pac precio 
+*2)
+ac sintrend
+pac sintrend 
 
 
 *3) Estimamos el modelo 
@@ -50,9 +54,5 @@ estat ic
 
 
 *4) display (poner los numeritos a mano para cada mes). No sé cómo agregarle la tendencia y la estacionalidad 
-
-
-
-
 
 
